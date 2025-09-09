@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "hn";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/HelveticaNowDisplay-Regular.woff2") format("woff2");
+}
+
+@theme {
+  --font-sans: "hn", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* loader bg */
+  --color-loader-bg: #101010;
+  --color-bg-counter: #969696;
+
+  --color-white: #ffffff;
+  --color-custom: #969696;
+}
+
+html,
+body {
+  @apply bg-white dark:bg-gray-950;
+
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+  }
+}
+
+.loader {
+  @apply fixed h-full w-full flex items-center justify-center z-50
+}
+
+
