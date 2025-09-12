@@ -33,4 +33,16 @@ body {
   @apply fixed h-full w-full flex items-center justify-center z-50
 }
 
+.project-card-select {
+  @apply h-[200px] w-[200px]
+}
+
+.project-card-select.is-selected{
+  background-color: red;
+}
+
+.project-card-select.is-selected{
+  background-color: none;
+}
+
 
