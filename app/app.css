@@ -34,15 +34,25 @@ body {
 }
 
 .project-card-select {
-  @apply h-[200px] w-[200px]
-}
-
-.project-card-select.is-selected{
-  background-color: red;
+  @apply h-[85px] w-[145px] cursor-pointer
 }
 
 .project-card-select.is-selected{
   background-color: none;
 }
+
+.home-project-title {
+  @apply flex items-center justify-between w-screen absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-auto z-10 pl-[2%] pr-[2%];
+}
+
+.hovered {
+  @apply scale-105 shadow-xl shadow-gray-500/40 transition-all;
+}
+
+.not-hovered {
+  @apply opacity-50 blur-[1px];
+}
+
+
 
 

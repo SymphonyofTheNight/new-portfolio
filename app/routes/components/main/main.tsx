@@ -1,55 +1,39 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from "react";
+import HomeList from "../HomeList/HomeList";
+import { projects } from "../../../admin/data";
 
-const main = () => {
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isScrolling, setIsScrolling] = useState(false);
+const Main = () => {
+  const [projectIndex, setprojectIndex] = useState<number>(0);
+  const [currentSrc, setCurrentSrc] = useState(projects[0].image);
+  const [animate, setAnimate] = useState(true);
 
   useEffect(() => {
-    const projCards = document.querySelectorAll('.project-card-select');
+    setAnimate(false); // start fade/blur out
+    const timeout = setTimeout(() => {
+      setCurrentSrc(projects[projectIndex].image); // swap image
+      setAnimate(true); // fade/blur in
+    }, 300); // must match duration below
 
-    const handleScroll = (e: WheelEvent) => {
-      if (isScrolling) return;
-
-      let newIndex = currentIndex;
-
-      if (e.deltaY > 0 && currentIndex < projCards.length - 1) {
-        newIndex = currentIndex + 1;
-      } else if (e.deltaY < 0 && currentIndex > 0) {
-        newIndex = currentIndex - 1;
-      }
-
-      if (newIndex !== currentIndex) {
-
-        // Remove is-selected from all
-        projCards.forEach((el) => el.classList.remove('is-selected'));
-
-        // Add is-selected to new active card
-        projCards[newIndex].classList.add('is-selected');
-
-        setCurrentIndex(newIndex);
-        setIsScrolling(true);
-        setTimeout(() => setIsScrolling(false), 300);
-      }
-    };
-
-    window.addEventListener('wheel', handleScroll);
-    return () => window.removeEventListener('wheel', handleScroll);
-  }, [currentIndex, isScrolling]);
+    return () => clearTimeout(timeout);
+  }, [projectIndex]);
 
   return (
-    <main className='grid justify-center items-center h-screen bg-black'>
-      <h1 className='text-white text-2xl'>Main</h1>
-
-      <div className='home-list-cards flex absolute'>
-          <button className="project-card-select"></button>
-          <button className="project-card-select"></button>
-          <button className="project-card-select"></button>
-          <button className="project-card-select"></button>
-          <button className="project-card-select"></button>
+    <main className="grid justify-center items-center h-screen bg-black relative overflow-hidden w-full">
+      <img
+        src={currentSrc}
+        alt={`Project ${projectIndex}`}
+        className={`absolute inset-0 w-full h-full object-cover brightness-50 
+          transition-all duration-700 ease-in-out
+          ${animate ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-105"}
+        `}
+      />
+      <div className="home-project-title">
+        <h1 className="text-white text-[48px]">{projects[projectIndex].title}</h1>
+        <p className="text-white text-[24px]">{projects[projectIndex].description}</p>
       </div>
+      <HomeList projects={projects} setprojectIndex={setprojectIndex} />
     </main>
-  )
-}
+  );
+};
 
-export default main
+export default Main;
