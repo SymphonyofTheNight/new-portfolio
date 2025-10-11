@@ -2,7 +2,7 @@ import { Outlet } from "react-router";
 import { useEffect, useState } from "react";
 
 //  loading screen
-import Loader from "./loader/Loader";
+import _Loader from "./_Loader/Loader";
 
 const Overlay = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +22,8 @@ const Overlay = () => {
 
   return (
     <>
-      {isLoading && <Loader document={isLoading} />}
+      {/* {isLoading && <_Loader document={isLoading} />} */}
+
       <Outlet />
     </>
   );

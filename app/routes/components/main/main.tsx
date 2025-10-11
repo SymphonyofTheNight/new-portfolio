@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
-import HomeList from "../HomeList/HomeList";
+
+// data
 import { projects } from "../../../admin/data";
+
+// components
+import Navigation from "../Navigation/Navigation";
+import HomeList from "../HomeList/HomeList";
 
 const Main = () => {
   const [projectIndex, setprojectIndex] = useState<number>(0);
@@ -18,7 +23,7 @@ const Main = () => {
   }, [projectIndex]);
 
   return (
-    <main className="grid justify-center items-center h-screen bg-black relative overflow-hidden w-full">
+    <main className="flex justify-center items-start h-screen bg-black relative overflow-hidden w-full p-[1.2%] pl-[0%] pr-[0%]">
       <img
         src={currentSrc}
         alt={`Project ${projectIndex}`}
@@ -27,6 +32,7 @@ const Main = () => {
           ${animate ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-105"}
         `}
       />
+      <Navigation />
       <div className="home-project-title">
         <h1 className="text-white text-[48px]">{projects[projectIndex].title}</h1>
         <p className="text-white text-[24px]">{projects[projectIndex].description}</p>
