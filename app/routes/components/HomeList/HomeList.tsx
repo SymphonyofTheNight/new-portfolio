@@ -72,14 +72,14 @@ useEffect(() => {
 
 
   return (
-    <div className='home-list-cards flex absolute bottom-[2%] right-[2%]'>
+    <div className='home-list-cards flex absolute bottom-[2%] right-[2%] gap-[14px]'>
       {projects?.map((project: Project, index) => (
         <button className={`project-card-select ${index === currentIndex ? 'is-selected': 
           ''
         }`} key={project.id} 
         onClick={()=> {
           setCurrentIndex(index)
-          setprojectIndex(index);
+          setprojectIndex(index)
         }}
         >
           <img className='inset-0 h-full w-full object-cover rounded-[4px]' src={project.image}/>

@@ -54,7 +54,7 @@ body {
 }
 
 .hamburger-line-one-true, .hamburger-line-two-true {
-  transition: .5 ease-in-out;
+  transition: .250 ease-in-out;
   top: 50%;
 }
 
