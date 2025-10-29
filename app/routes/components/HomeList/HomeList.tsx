@@ -82,7 +82,7 @@ useEffect(() => {
           setprojectIndex(index)
         }}
         >
-          <img className='inset-0 h-full w-full object-cover rounded-[4px]' src={project.image}/>
+          <img className='inset-0 h-full w-full object-cover rounded-[2px]' src={project.image}/>
         </button>
       ))}
     </div>

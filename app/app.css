@@ -34,7 +34,7 @@ body {
 }
 
 .project-card-select {
-  @apply h-[85px] w-[145px] cursor-pointer
+  @apply h-[70px] w-[120px] cursor-pointer
 }
 
 .project-card-select.is-selected{
@@ -50,7 +50,7 @@ body {
 }
 
 .not-hovered {
-  @apply opacity-50 blur-[1px];
+  @apply opacity-25;
 }
 
 .hamburger-line-one-true, .hamburger-line-two-true {

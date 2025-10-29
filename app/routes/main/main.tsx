@@ -1,25 +1,46 @@
 import { useState, useEffect } from "react";
 
 // data
-import { projects } from "../../../admin/data";
+import { projects } from "../../admin/data";
 
 // components
-import Navigation from "../Navigation/Navigation";
-import HomeList from "../HomeList/HomeList";
+import Navigation from "../components/Navigation/Navigation";
+import HomeList from "../components/HomeList/HomeList";
 
 const Main = () => {
   const [projectIndex, setprojectIndex] = useState<number>(0);
   const [currentSrc, setCurrentSrc] = useState(projects[0].image);
   const [animate, setAnimate] = useState(true);
+  const [loaded, setLoaded] = useState(true); // new: track if image fully loaded
 
   useEffect(() => {
     setAnimate(false); // start fade/blur out
-    const timeout = setTimeout(() => {
-      setCurrentSrc(projects[projectIndex].image); // swap image
-      setAnimate(true); // fade/blur in
-    }, 300); // must match duration below
+    setLoaded(false);  // prepare for new image load
 
-    return () => clearTimeout(timeout);
+    const nextSrc = projects[projectIndex].image;
+    const img = new Image();
+    img.src = nextSrc;
+
+    const timeout = setTimeout(() => {
+      // only swap once image is loaded to avoid flicker
+      if (img.complete) {
+        setCurrentSrc(nextSrc);
+        setLoaded(true);
+        setAnimate(true); // fade/blur in
+      } else {
+        // if not yet loaded, wait for it
+        img.onload = () => {
+          setCurrentSrc(nextSrc);
+          setLoaded(true);
+          requestAnimationFrame(() => setAnimate(true));
+        };
+      }
+    }, 300); // 🔹 keep your original 300ms delay
+
+    return () => {
+      clearTimeout(timeout);
+      img.onload = null;
+    };
   }, [projectIndex]);
 
   return (
