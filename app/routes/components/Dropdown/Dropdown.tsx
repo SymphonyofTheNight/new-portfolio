@@ -15,12 +15,8 @@ const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff }: DropdownProps 
             >
               <div className={`${iconTrigger ? 'flex' : 'h-[0vh]'} flex-1 bg-red-200 relative`}>
               </div>
-              <div className={`${ iconTrigger
-                    ? 'h-[100vh] transition-all duration-500 delay-[500ms]'
-                    : 'h-[0vh] transition-all duration-500 delay-[600ms]'
-                } flex justify-end max-w-[950px] w-full right-0 relative`}
-              >
-                  <button
+              <div className={`${ iconTrigger ? 'h-[100vh] transition-all duration-500 delay-[500ms]' : 'h-[0vh] transition-all duration-500 delay-[600ms]'} flex justify-end max-w-[1050px] w-full right-0 relative overflow-hidden`}>
+                <button
                     className={`absolute bottom-[10px] left-[-75px]
                       bg-white h-[60px] w-[60px]
                       transition-all duration-500 cursor-pointer
@@ -33,8 +29,28 @@ const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff }: DropdownProps 
                     }}
                     onClick={() => setIconTrigger(!iconTrigger)}
                   >
-                  </button>
+                </button>
                 <div className="bg-white w-[100%] transition-all duration-500">
+                  {/* contents */}
+                  <div className='nav-menu flex flex-col justify-start items-stretch'>
+                    <div className='nav-tp py-[1rem] px-[2rem]'>
+                        <h2 className='text-loader-bg text-[3rem]'>Menu</h2>
+                    </div>
+                    <div className='nav-list py-[3.8rem] px-[2rem] pb-[4.8rem] border-t border-t-[rgba(16,16,16,0.2)] flex items-start justify-between '>
+                      <h4 className='text-bg-counter'>
+                        (Links)
+                      </h4>
+                      <div className='w-[47.5rem]'>
+                        <a className='pt-4 pb-[3.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)]'>
+                          <span className='text-bg-counter text-[2rem]'>(01)</span>
+                          <span className='text-loader-bg pl-10 text-[2rem]'>Projects</span>
+                        </a>
+                      </div>
+                    </div>
+                    <div className='nav-bt'>
+
+                    </div>
+                  </div>
                 </div>
               </div>
         </div>

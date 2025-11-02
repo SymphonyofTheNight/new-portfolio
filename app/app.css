@@ -47,8 +47,12 @@ body {
   background-color: none;
 }
 
-.home-project-title {
+.project-title-section {
   @apply flex items-center justify-between w-screen absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-auto z-2 pl-[2%] pr-[2%];
+}
+
+.project-credit-section {
+  @apply flex
 }
 
 .hovered {
