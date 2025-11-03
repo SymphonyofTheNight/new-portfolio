@@ -44,7 +44,7 @@ const Main = () => {
   }, [projectIndex]);
 
   return (
-    <main className="flex justify-center items-start h-screen bg-black relative overflow-hidden w-full p-[1.55%] pl-[0%] pr-[0%]">
+    <main className="flex justify-center items-start h-screen bg-black relative overflow-hidden w-full xs:pl-[0%] xs:pr-[0%] xs:p-[18px] md:p-[1.55%] md:pl-[0%] md:pr-[0%] ">
       <img
         src={currentSrc}
         alt={`Project ${projectIndex}`}
@@ -54,11 +54,11 @@ const Main = () => {
         `}
       />
       <Navigation />
-      <div className="project-title-section">
-        <h1 className="text-white text-[48px]">{projects[projectIndex].title}</h1>
-        <p className="text-white text-[24px]">{projects[projectIndex].description}</p>
+      <div className="project-title-section xs:flex-col md:[flex-direction:unset]">
+        <h1 className="text-white xs:text-[8vw] sm:text-[48px]">{projects[projectIndex].title}</h1>
+        <p className="text-white xs:text-[4vw] sm:text-[24px]">{projects[projectIndex].description}</p>
       </div>
-      <div className="project-credit-section absolute bottom-[2%] pl-[2%] pr-[2%] flex items-end gap-18 h-[100px] w-full">
+      <div className="absolute bottom-[2%] pl-[2%] pr-[2%] xs:hidden sm:flex items-end gap-18 h-[100px] w-full">
           <div>
             <h3 className="text-bg-counter">Credits</h3>
             <p className="m-0 p-0">{projects[projectIndex].title}</p>

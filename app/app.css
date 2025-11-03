@@ -20,6 +20,7 @@
   --color-custom: #969696;
 
   /* breakpoints */
+  --breakpoint-xs: 280px;
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
@@ -49,10 +50,6 @@ body {
 
 .project-title-section {
   @apply flex items-center justify-between w-screen absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-auto z-2 pl-[2%] pr-[2%];
-}
-
-.project-credit-section {
-  @apply flex
 }
 
 .hovered {

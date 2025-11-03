@@ -41,21 +41,21 @@ const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff }: DropdownProps 
                         (Links)
                       </h4>
                       <div className='w-[40.5rem]'>
-                        <a className='pt-4 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)]'>
+                        <a className='pt-4 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)] cursor-pointer group'>
                           <span className='text-bg-counter text-[1.3rem]'>(01)</span>
-                          <span className='text-loader-bg pl-5 text-[1.5rem]'>Projects</span>
+                          <span className='text-loader-bg pl-5 text-[1.5rem] transition-all duration-200 group-hover:pl-10'>Projects</span>
                         </a>
-                        <a className='pt-8 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)]'>
+                        <a className='pt-9 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)] cursor-pointer group'>
                           <span className='text-bg-counter text-[1.3rem]'>(02)</span>
-                          <span className='text-loader-bg pl-5 text-[1.5rem]'>About</span>
+                          <span className='text-loader-bg pl-5 text-[1.5rem] transition-all duration-200 group-hover:pl-10'>About</span>
                         </a>
-                        <a className='pt-8 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)]'>
+                        <a className='pt-9 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)] cursor-pointer group'>
                           <span className='text-bg-counter text-[1.3rem]'>(03)</span>
-                          <span className='text-loader-bg pl-5 text-[1.5rem]'>Archives</span>
+                          <span className='text-loader-bg pl-5 text-[1.5rem] transition-all duration-200 group-hover:pl-10'>Archives</span>
                         </a>
-                        <a className='pt-8 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)]'>
+                        <a className='pt-9 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)] cursor-pointer group'>
                           <span className='text-bg-counter text-[1.3rem]'>(04)</span>
-                          <span className='text-loader-bg pl-5 text-[1.5rem]'>Contact</span>
+                          <span className='text-loader-bg pl-5 text-[1.5rem] transition-all duration-200 group-hover:pl-10'>Contact</span>
                         </a>
                       </div>
                     </div>

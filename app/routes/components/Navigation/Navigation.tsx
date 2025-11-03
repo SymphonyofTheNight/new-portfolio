@@ -18,11 +18,11 @@ const Navigation = () => {
   }, [iconTrigger]);
 
   return (
-    <header className='w-full flex items-center justify-between pl-[2%] pr-[2%] z-5'>
+    <header className='w-full flex items-center justify-between xs:pl-[32px] xs:pr-[32px] md:pl-[2%] md:pr-[2%] z-5'>
         <p>Gino</p>
-        <p className='absolute -translate-x-1/2 left-[50%]'>Web Design and Development</p>
+        <p className='absolute -translate-x-1/2 left-[50%] xs:hidden md:block'>Web Design and Development</p>
         <nav>
-            <button className='hamburger-btn-trigger relative grid items-center justify-center w-[95px] min-h-[50px] cursor-pointer z-[10]'
+            <button className='hamburger-btn-trigger relative grid items-center justify-center xs:w-[72px] md:w-[95px] min-h-[50px] cursor-pointer z-[10]'
             onClick={() => setIconTrigger(!iconTrigger)}
             >
               <div className={`${iconTrigger ? 'hamburger-line-one-true' : 'hamburger-line-one-false'} bg-white absolute h-[2px] w-[70px] -translate-x-1/2 -translate-y-1/2 left-[50%] top-[30%] transition-all duration-[.2s] delay-750 flex items-center justify-center`}>
