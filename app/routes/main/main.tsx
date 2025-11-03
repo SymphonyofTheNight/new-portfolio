@@ -44,7 +44,7 @@ const Main = () => {
   }, [projectIndex]);
 
   return (
-    <main className="flex justify-center items-start h-screen bg-black relative overflow-hidden w-full p-[1.35%] pl-[0%] pr-[0%]">
+    <main className="flex justify-center items-start h-screen bg-black relative overflow-hidden w-full p-[1.55%] pl-[0%] pr-[0%]">
       <img
         src={currentSrc}
         alt={`Project ${projectIndex}`}

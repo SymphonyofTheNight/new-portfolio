@@ -33,17 +33,29 @@ const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff }: DropdownProps 
                 <div className="bg-white w-[100%] transition-all duration-500">
                   {/* contents */}
                   <div className='nav-menu flex flex-col justify-start items-stretch'>
-                    <div className='nav-tp py-[1rem] px-[2rem]'>
+                    <div className='nav-tp py-[1.2rem] px-[2rem]'>
                         <h2 className='text-loader-bg text-[3rem]'>Menu</h2>
                     </div>
                     <div className='nav-list py-[3.8rem] px-[2rem] pb-[4.8rem] border-t border-t-[rgba(16,16,16,0.2)] flex items-start justify-between '>
-                      <h4 className='text-bg-counter'>
+                      <h4 className='text-bg-counter pt-4 pb-[3.2rem]'>
                         (Links)
                       </h4>
-                      <div className='w-[47.5rem]'>
-                        <a className='pt-4 pb-[3.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)]'>
-                          <span className='text-bg-counter text-[2rem]'>(01)</span>
-                          <span className='text-loader-bg pl-10 text-[2rem]'>Projects</span>
+                      <div className='w-[40.5rem]'>
+                        <a className='pt-4 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)]'>
+                          <span className='text-bg-counter text-[1.3rem]'>(01)</span>
+                          <span className='text-loader-bg pl-5 text-[1.5rem]'>Projects</span>
+                        </a>
+                        <a className='pt-8 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)]'>
+                          <span className='text-bg-counter text-[1.3rem]'>(02)</span>
+                          <span className='text-loader-bg pl-5 text-[1.5rem]'>About</span>
+                        </a>
+                        <a className='pt-8 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)]'>
+                          <span className='text-bg-counter text-[1.3rem]'>(03)</span>
+                          <span className='text-loader-bg pl-5 text-[1.5rem]'>Archives</span>
+                        </a>
+                        <a className='pt-8 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)]'>
+                          <span className='text-bg-counter text-[1.3rem]'>(04)</span>
+                          <span className='text-loader-bg pl-5 text-[1.5rem]'>Contact</span>
                         </a>
                       </div>
                     </div>
