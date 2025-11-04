@@ -1,4 +1,5 @@
-import React from 'react'
+import { useState } from "react";
+import { Link } from "react-router";
 
 interface DropdownProps {
     iconTrigger: boolean
@@ -7,6 +8,11 @@ interface DropdownProps {
 }
 
 const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff }: DropdownProps ) => {
+
+  const [Hovered, SetHovered] = useState<number | null>(null);
+
+  const [links] = useState<Array<string>>(["Instagram", "Discord", "LinkedIn"])
+
   return (
         <div className={`absolute top-0 left-1/2 -translate-x-1/2 
             ${iconTrigger ? 'h-full transition-all duration-500 delay-[1000ms]' : 'h-[0%] transition-all duration-500 delay-[1200ms]'}
@@ -36,11 +42,11 @@ const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff }: DropdownProps 
                     <div className='nav-tp py-[1.2rem] px-[2rem]'>
                         <h2 className='text-loader-bg text-[3rem]'>Menu</h2>
                     </div>
-                    <div className='nav-list py-[3.8rem] px-[2rem] pb-[4.8rem] border-t border-t-[rgba(16,16,16,0.2)] flex items-start justify-between '>
-                      <h4 className='text-bg-counter pt-4 pb-[3.2rem]'>
+                    <div className='nav-list py-[3.8rem] px-[2rem] pb-[4.8rem] border-t border-t-[rgba(16,16,16,0.2)] flex items-start justify-between xs:flex-col tb:[flex-direction:unset]'>
+                      <h4 className='text-bg-counter pt-4 xs:pb-[1.2rem] tb:pb-[3.2rem]'>
                         (Links)
                       </h4>
-                      <div className='w-[40.5rem]'>
+                      <div className='xs:w-full tb:w-[40.5rem]'>
                         <a className='pt-4 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)] cursor-pointer group'>
                           <span className='text-bg-counter text-[1.3rem]'>(01)</span>
                           <span className='text-loader-bg pl-5 text-[1.5rem] transition-all duration-200 group-hover:pl-10'>Projects</span>
@@ -59,8 +65,21 @@ const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff }: DropdownProps 
                         </a>
                       </div>
                     </div>
-                    <div className='nav-bt'>
+                    <div className='absolute bottom-0 w-full nav-bt flex xs:items-start tb:items-end justify-between px-[2rem] xs:flex-col tb:[flex-direction:unset]'>
+                      <h4 className='text-bg-counter pb-4'>
+                        (Social Media)
+                      </h4>
+                      <div className='nav-bt-soc grid xs:pt-0 tb:pt-4 pb-4'>
+                        <ul>
+                          {links.map((soc, i) => (
+                            <li className="leading-[15px] cursor-pointer group" key={soc} onMouseEnter={() => SetHovered(i)} onMouseLeave={() => SetHovered(null)}>
+                              <Link to="" className={`${Hovered === null ? "text-loader-bg" : Hovered === i ? "text-loader-bg pl-3" : "text-bg-counter" } text-[12px] transition-all dura`}>{soc}</Link>
+                            </li>
+                          ))}
 
+                        </ul>
+                      </div>
+                      <p className='text-bg-counter pb-4 xs:absolute tb:[position:unset] xs:right-[32px] xs:bottom-[0px] tb:[right:unset]'>©2025</p>
                     </div>
                   </div>
                 </div>
