@@ -10,6 +10,22 @@ interface DropdownProps {
 const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff }: DropdownProps ) => {
 
   const [Hovered, SetHovered] = useState<number | null>(null);
+  const [menuToggle, setMenuToggle] = useState({
+    project: true,
+    about: false,
+    archives: false,
+    contact: false,
+  });
+
+  const toggleFunc = (key: keyof typeof menuToggle) => {
+    setMenuToggle(menu => {
+      const allFalse = Object.fromEntries(
+        Object.keys(menu).map(k => [k, false])
+      ) as typeof menu; 
+
+      return { ...allFalse, [key]: !menu[key] };
+    });
+  };
 
   const [links] = useState<Array<string>>(["Instagram", "Discord", "LinkedIn"])
 
@@ -21,7 +37,7 @@ const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff }: DropdownProps 
             >
               <div className={`${iconTrigger ? 'flex' : 'h-[0vh]'} flex-1 bg-red-200 relative`}>
               </div>
-              <div className={`${ iconTrigger ? 'h-[100vh] transition-all duration-500 delay-[500ms]' : 'h-[0vh] transition-all duration-500 delay-[600ms]'} flex justify-end max-w-[1050px] w-full right-0 relative overflow-hidden`}>
+              <div className={`${ iconTrigger ? 'h-[100vh] transition-all duration-500 delay-[500ms]' : 'h-[0vh] transition-all duration-500 delay-[600ms]'} flex justify-end max-w-[1050px] w-full right-0 relative overflow-hidden xs:p-[10px] sm:p-0`}>
                 <button
                     className={`absolute bottom-[10px] left-[-75px]
                       bg-white h-[60px] w-[60px]
@@ -49,23 +65,31 @@ const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff }: DropdownProps 
                       <div className='xs:w-full tb:w-[40.5rem]'>
                         <a className='pt-4 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)] cursor-pointer group'>
                           <span className='text-bg-counter text-[1.3rem]'>(01)</span>
-                          <span className='text-loader-bg pl-5 text-[1.5rem] transition-all duration-200 group-hover:pl-10'>Projects</span>
+                          <span className={`text-loader-bg text-[1.5rem] transition-all duration-200 ${menuToggle.project ? 'pl-5' : 'pl-15'} `}
+                          onClick={() => toggleFunc("project")}
+                          >Projects</span>
                         </a>
                         <a className='pt-9 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)] cursor-pointer group'>
                           <span className='text-bg-counter text-[1.3rem]'>(02)</span>
-                          <span className='text-loader-bg pl-5 text-[1.5rem] transition-all duration-200 group-hover:pl-10'>About</span>
+                          <span className={`text-loader-bg text-[1.5rem] transition-all duration-200 ${menuToggle.about ? 'pl-5' : 'pl-15'} `}
+                          onClick={() => toggleFunc("about")}
+                          >About</span>
                         </a>
                         <a className='pt-9 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)] cursor-pointer group'>
                           <span className='text-bg-counter text-[1.3rem]'>(03)</span>
-                          <span className='text-loader-bg pl-5 text-[1.5rem] transition-all duration-200 group-hover:pl-10'>Archives</span>
+                          <span className={`text-loader-bg text-[1.5rem] transition-all duration-200 ${menuToggle.archives ? 'pl-5' : 'pl-15'} `}
+                          onClick={() => toggleFunc("archives")}
+                          >Archives</span>
                         </a>
                         <a className='pt-9 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)] cursor-pointer group'>
                           <span className='text-bg-counter text-[1.3rem]'>(04)</span>
-                          <span className='text-loader-bg pl-5 text-[1.5rem] transition-all duration-200 group-hover:pl-10'>Contact</span>
+                          <span className={`text-loader-bg text-[1.5rem] transition-all duration-200 ${menuToggle.contact ? 'pl-5' : 'pl-15'}`}
+                          onClick={() => toggleFunc("contact")}
+                          >Contact</span>
                         </a>
                       </div>
                     </div>
-                    <div className='absolute bottom-0 w-full nav-bt flex xs:items-start tb:items-end justify-between px-[2rem] xs:flex-col tb:[flex-direction:unset]'>
+                    <div className='absolute bottom-0 w-full nav-bt flex xs:items-start tb:items-end justify-between xs:pb-[10px] sm:pb-[0px] xs:px-[22px] sm:px-[2rem] xs:flex-col tb:[flex-direction:unset]'>
                       <h4 className='text-bg-counter pb-4'>
                         (Social Media)
                       </h4>
@@ -79,7 +103,7 @@ const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff }: DropdownProps 
 
                         </ul>
                       </div>
-                      <p className='text-bg-counter pb-4 xs:absolute tb:[position:unset] xs:right-[32px] xs:bottom-[0px] tb:[right:unset]'>©2025</p>
+                      <p className='text-bg-counter pb-4 xs:absolute tb:[position:unset] xs:right-[42px] xs:bottom-[10px] tb:[right:unset]'>©2025</p>
                     </div>
                   </div>
                 </div>

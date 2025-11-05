@@ -6,4 +6,7 @@ export type Project = {
   technologies: string[];
   githubUrl?: string;
   liveDemoUrl?: string;
+  credits?: string;
+  role?: string;
+  year?: string;
 };

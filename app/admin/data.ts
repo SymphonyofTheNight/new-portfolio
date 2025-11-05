@@ -12,7 +12,10 @@ export const projects: Project[] = [
         "image": aesthetic_capture,
         "technologies": ["React", "Tailwind CSS", "TypeScript"],
         "githubUrl": "",
-        "liveDemoUrl": ""
+        "liveDemoUrl": "",
+        "credits": "Gino Dela Vega",
+        "role": "Developer",
+        "year": "2025"
     },
     {
         "id": 2,
@@ -21,6 +24,9 @@ export const projects: Project[] = [
         "image": musicbass,
         "technologies": ["React", "Tailwind CSS", "TypeScript"],
         "githubUrl": "",
-        "liveDemoUrl": ""
+        "liveDemoUrl": "",
+        "credits": "Gino Dela Vega",
+        "role": "Developer",
+        "year": "2025"
     },
 ]

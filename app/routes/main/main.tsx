@@ -44,7 +44,7 @@ const Main = () => {
   }, [projectIndex]);
 
   return (
-    <main className="flex justify-center items-start h-screen bg-black relative overflow-hidden w-full xs:pl-[0%] xs:pr-[0%] xs:p-[18px] xs:pt-[30px] md:p-[1.55%] md:pt-[1.55%] md:pl-[0%] md:pr-[0%] ">
+    <main className="flex justify-center items-start h-screen bg-black relative overflow-hidden w-full xs:pl-[0%] xs:pr-[0%] xs:p-[18px] xs:pt-[30px] md:p-[1.55%] md:pt-[30px] md:pl-[0%] md:pr-[0%] ">
       <img
         src={currentSrc}
         alt={`Project ${projectIndex}`}
@@ -61,15 +61,15 @@ const Main = () => {
       <div className="absolute bottom-[2%] pl-[2%] pr-[2%] xs:hidden sm:flex items-end gap-18 h-[100px] w-full">
           <div>
             <h3 className="text-bg-counter">Credits</h3>
-            <p className="m-0 p-0">{projects[projectIndex].title}</p>
+            <p className="m-0 p-0">{projects[projectIndex].credits}</p>
           </div>
           <div>
             <h3 className="text-bg-counter">Role</h3>
-            <p className="m-0 p-0">{projects[projectIndex].title}</p>
+            <p className="m-0 p-0">{projects[projectIndex].role}</p>
           </div>
           <div>
             <h3 className="text-bg-counter">Year</h3>
-            <p className="m-0 p-0">{projects[projectIndex].title}</p>
+            <p className="m-0 p-0">{projects[projectIndex].year}</p>
           </div>
       </div>
       <HomeList projects={projects} setprojectIndex={setprojectIndex} />
