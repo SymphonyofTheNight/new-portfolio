@@ -3,16 +3,16 @@ import { useState, useEffect } from 'react'
 // component
 import Dropdown from '../Dropdown/Dropdown';
 
-const Navigation = () => {
+const Navigation = ({ routeToggle ,setRouteToggle }: any) => {
 
   const [iconTrigger, setIconTrigger] = useState<boolean>(false);
   const [pointerOff, setPointerOff] = useState<boolean>(false);
 
   useEffect(() => {
     if (iconTrigger) {
-      setPointerOff(false); // make it clickable again when shown
+      setPointerOff(false); 
     } else {
-      const timer = setTimeout(() => setPointerOff(true), 500); // wait for opacity fade out
+      const timer = setTimeout(() => setPointerOff(true), 500); 
       return () => clearTimeout(timer);
     }
   }, [iconTrigger]);
@@ -33,7 +33,7 @@ const Navigation = () => {
               </div>
             </button>
             {/* reusable dropdown */}
-            <Dropdown iconTrigger={iconTrigger} setIconTrigger={setIconTrigger}  setPointerOff={setPointerOff}/>
+            <Dropdown iconTrigger={iconTrigger} setIconTrigger={setIconTrigger}  setPointerOff={setPointerOff} routeToggle={routeToggle} setRouteToggle={setRouteToggle}/>
         </nav>
     </header> 
   )

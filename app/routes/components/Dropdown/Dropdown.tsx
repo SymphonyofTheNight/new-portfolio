@@ -1,13 +1,17 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 interface DropdownProps {
     iconTrigger: boolean
     setIconTrigger: any
     setPointerOff: any
+    routeToggle: any
+    setRouteToggle: any
 }
 
-const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff }: DropdownProps ) => {
+const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff, routeToggle ,setRouteToggle }: DropdownProps ) => {
+
+  const navigate = useNavigate();
 
   const [Hovered, SetHovered] = useState<number | null>(null);
   const [menuToggle, setMenuToggle] = useState({
@@ -72,7 +76,12 @@ const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff }: DropdownProps 
                         <a className='pt-9 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)] cursor-pointer group'>
                           <span className='text-bg-counter text-[1.3rem]'>(02)</span>
                           <span className={`text-loader-bg text-[1.5rem] transition-all duration-200 ${menuToggle.about ? 'pl-5' : 'pl-15'} `}
-                          onClick={() => toggleFunc("about")}
+                          onClick={() => {
+                            toggleFunc("about")
+                            setIconTrigger(!iconTrigger)
+                            navigate("/about")
+                            setRouteToggle({...routeToggle, about: !routeToggle.about })
+                          }}
                           >About</span>
                         </a>
                         <a className='pt-9 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)] cursor-pointer group'>

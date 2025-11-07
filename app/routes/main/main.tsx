@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Outlet, useLocation } from "react-router";
 
 // data
 import { projects } from "../../admin/data";
@@ -11,11 +12,12 @@ const Main = () => {
   const [projectIndex, setprojectIndex] = useState<number>(0);
   const [currentSrc, setCurrentSrc] = useState(projects[0].image);
   const [animate, setAnimate] = useState(true);
-  const [loaded, setLoaded] = useState(true); // new: track if image fully loaded
+  const [routeToggle, setRouteToggle] = useState({ project: true, about: false, archive: false, contact: false });
+
+   const location = useLocation(); // ✅ to detect route changes
 
   useEffect(() => {
     setAnimate(false); // start fade/blur out
-    setLoaded(false);  // prepare for new image load
 
     const nextSrc = projects[projectIndex].image;
     const img = new Image();
@@ -25,13 +27,11 @@ const Main = () => {
       // only swap once image is loaded to avoid flicker
       if (img.complete) {
         setCurrentSrc(nextSrc);
-        setLoaded(true);
         setAnimate(true); // fade/blur in
       } else {
         // if not yet loaded, wait for it
         img.onload = () => {
           setCurrentSrc(nextSrc);
-          setLoaded(true);
           requestAnimationFrame(() => setAnimate(true));
         };
       }
@@ -43,6 +43,21 @@ const Main = () => {
     };
   }, [projectIndex]);
 
+  // 🔹 NEW: sync toggle with route path
+  useEffect(() => {
+    const isAbout = location.pathname === "/about";
+
+    // Optional delay for smooth closing animation
+    const timer = setTimeout(() => {
+      setRouteToggle((prev) => ({
+        ...prev,
+        about: isAbout,
+      }));
+    }, isAbout ? 0 : 300);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
+
   return (
     <main className="flex justify-center items-start h-screen bg-black relative overflow-hidden w-full xs:pl-[0%] xs:pr-[0%] xs:p-[18px] xs:pt-[30px] md:p-[1.55%] md:pt-[30px] md:pl-[0%] md:pr-[0%] ">
       <img
@@ -53,7 +68,7 @@ const Main = () => {
           ${animate ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-105"}
         `}
       />
-      <Navigation />
+      <Navigation routeToggle={routeToggle} setRouteToggle={setRouteToggle}/>
       <div className="project-title-section xs:flex-col md:[flex-direction:unset]">
         <h1 className="text-white xs:text-[8vw] sm:text-[48px]">{projects[projectIndex].title}</h1>
         <p className="text-white xs:text-[4vw] sm:text-[24px]">{projects[projectIndex].description}</p>
@@ -73,6 +88,9 @@ const Main = () => {
           </div>
       </div>
       <HomeList projects={projects} setprojectIndex={setprojectIndex} />
+
+      {/* side components */}
+      <Outlet context={{ routeToggle, setRouteToggle }} />
     </main>
   );
 };
