@@ -14,7 +14,16 @@ const Main = () => {
   const [animate, setAnimate] = useState(true);
   const [routeToggle, setRouteToggle] = useState({ project: true, about: false, archive: false, contact: false });
 
-   const location = useLocation(); // ✅ to detect route changes
+  const location = useLocation(); // ✅ to detect route changes
+
+  useEffect(() => {
+    const entries = performance.getEntriesByType("navigation") as PerformanceNavigationTiming[];
+    const navType = entries[0]?.type;
+
+    if (navType === "reload") {
+      window.location.href = "/";
+    }
+  }, []);
 
   useEffect(() => {
     setAnimate(false); // start fade/blur out

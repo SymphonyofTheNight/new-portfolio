@@ -1,5 +1,6 @@
-import { useOutletContext } from "react-router";
+import { useOutletContext, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
+import SvgBtnIcon from "../_Svg/Svg";
 
 type OutletContextType = {
   routeToggle: { about: boolean };
@@ -7,15 +8,16 @@ type OutletContextType = {
 
 const About = () => {
   const { routeToggle } = useOutletContext<OutletContextType>();
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState<boolean>(false);
+  const [hideBtn, setHideBtn] = useState<boolean>(false);
 
-  // ✅ Animate after mount (smooth entry)
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (routeToggle.about) {
-      const timer = setTimeout(() => setShow(true), 2000); // short delay for smooth start
+      const timer = setTimeout(() => setShow(true), 2000); 
       return () => clearTimeout(timer);
     } else {
-      // When leaving, hide with animation first
       const timer = setTimeout(() => setShow(false), 0);
       return () => clearTimeout(timer);
     }
@@ -23,28 +25,27 @@ const About = () => {
 
   return (
     <aside
-      className={`absolute top-0 left-1/2 -translate-x-1/2
-      ${
-        show
-          ? "h-full transition-all duration-500 delay-[500ms] flex flex-row items-start overflow-hidden z-40"
-          : "h-[0%] transition-all duration-500 delay-[0ms]"
-      }
-      w-[100vw] bg-transparent backdrop-blur-[1px] flex flex-row items-start overflow-hidden z-40`}
-    >
-      <div
-        className={`${
-          show ? "flex" : "h-[0vh]"
-        } flex-1 bg-red-200 relative transition-all duration-500`}
-      ></div>
-
-      <div
-        className={`${
-          show
-            ? "h-[100vh] transition-all duration-500 delay-[200ms]"
-            : "h-[0vh] transition-all duration-500 delay-[0ms]"
-        } flex justify-end max-w-[1100px] w-full right-0 relative overflow-hidden`}
-      >
-        <div className="bg-black w-[100%] transition-all duration-500">
+      className={`absolute top-0 left-1/2 -translate-x-1/2 ${ show ? "h-full transition-all duration-500 delay-[500ms] flex flex-row items-start overflow-hidden z-40" : "h-[0%] transition-all duration-500 delay-[0ms]" } w-[100vw] bg-transparent backdrop-blur-[1px] flex flex-row items-start overflow-hidden z-40`}>
+      <div className={`${ show ? "flex" : "h-[0vh]" } flex-1 bg-red-200 relative transition-all duration-500`}></div>
+      <div className={`${ show ? "h-[100vh] transition-all duration-500 delay-[200ms]" : "h-[0vh] transition-all duration-500 delay-[0ms]" } flex justify-end max-w-[1100px] w-full right-0 relative`}>
+        <div className="bg-black w-[100%] transition-all duration-500 relative">
+          {/* exit */}
+          <button
+            className={`absolute left-[15px] bottom-[15px] h-[45px] w-[45px] bg-white rounded-[2px] py-[15px] px-[15px] cursor-pointer transition-all duration-500 
+              ${show && !hideBtn ? "opacity-100 delay-[1500ms]" : "opacity-0 delay-[0ms]"}`}
+            onClick={() => {
+              setHideBtn(true);
+              setTimeout(() => {
+                setShow(false);
+                setHideBtn(false); 
+                setTimeout(() => {
+                  navigate("/")
+                }, 1000)
+              }, 600); 
+            }}
+          >
+            <SvgBtnIcon />
+          </button>
           {/* contents */}
           <div className="about-tp flex flex-col justify-start items-stretch">
             <div className="py-[1rem] border-b border-b-[rgba(150,150,150,0.2)] pb-12 pt-4 px-[2rem]">
