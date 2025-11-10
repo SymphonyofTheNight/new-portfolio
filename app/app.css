@@ -66,6 +66,10 @@ body {
   top: 50%;
 }
 
+.about-services-list > svg {
+  height: 14px!important;
+}
+
 
 
 

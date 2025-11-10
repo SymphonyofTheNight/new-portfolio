@@ -1,6 +1,7 @@
 import { useOutletContext, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import SvgBtnIcon from "../_Svg/Svg";
+import SvgBtnIconBlack from "../_Svg/SvgBtnIconBlack";
+import SvgBtnIconWhite from "../_Svg/SvgBtnIconWhite";
 
 type OutletContextType = {
   routeToggle: { about: boolean };
@@ -32,7 +33,7 @@ const About = () => {
           {/* exit */}
           <button
             className={`absolute left-[15px] bottom-[15px] h-[45px] w-[45px] bg-white rounded-[2px] py-[15px] px-[15px] cursor-pointer transition-all duration-500 
-              ${show && !hideBtn ? "opacity-100 delay-[1500ms]" : "opacity-0 delay-[0ms]"}`}
+              ${show && !hideBtn ? "opacity-100 delay-[1500ms]" : "opacity-0 delay-[0ms]"} group`}
             onClick={() => {
               setHideBtn(true);
               setTimeout(() => {
@@ -44,7 +45,9 @@ const About = () => {
               }, 600); 
             }}
           >
-            <SvgBtnIcon />
+            <div className="transition-transform duration-200 group-hover:rotate-[90deg]">
+              <SvgBtnIconBlack />
+            </div>
           </button>
           {/* contents */}
           <div className="about-tp flex flex-col justify-start items-stretch">
@@ -66,16 +69,23 @@ const About = () => {
               <div className="w-[40.5rem]">
                 {["Art Direction", "UI/UX Design", "Brand Identity", "Web Development"].map(
                   (item, i) => (
-                    <a
-                      key={i}
-                      className="pt-8 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(150,150,150,0.2)]"
-                    >
-                      <span className="text-bg-counter text-[1.1rem]">
-                        ({String(i + 1).padStart(2, "0")})
-                      </span>
-                      <span className="text-white pl-5 text-[1.2rem]">
-                        {item}
-                      </span>
+                    <a key={i} className="pt-8 pb-[2.2rem] flex items-center justify-between border-b border-b-[rgba(150,150,150,0.2)] relative group">
+                      <div>
+                        <span className="text-bg-counter text-[1.1rem]">
+                          ({String(i + 1).padStart(2, "0")})
+                        </span>
+                        <span className="text-white pl-5 text-[1.2rem]">
+                          {item}
+                        </span>
+                      </div>
+                      <div className="w-[400px] leading-[100%] pr-[60px]">
+                        <span className="text-bg-counter text-[12px] transition-transform duration-400 hidden group-hover:block">
+                            Designing and building seamless digital experiences from front-end interfaces to back-end architecture. I transform ideas into scalable, high-performance web applications by combining clean code, efficient data flow, and modern frameworks. Every project is crafted for reliability, usability, and long-term growth.
+                        </span>
+                      </div>
+                      <div className="about-services-list transform -translate-x-1/2 -translate-y-1/2 absolute right-[20px] top-[50%] transition-transform duration-200 group-hover:rotate-[90deg]">
+                        <SvgBtnIconWhite />
+                      </div>
                     </a>
                   )
                 )}

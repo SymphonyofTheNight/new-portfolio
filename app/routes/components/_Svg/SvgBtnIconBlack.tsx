@@ -1,4 +1,4 @@
-  const SvgBtnIcon = () => {
+  const SvgBtnIconBlack = () => {
     return (
     <svg     viewBox="0 0 132 132"  fill="black"  xmlns="http://www.w3.org/2000/svg">
       <path    d="M3.06178 65.6064L65.6064 3.06178L128.151 65.6064L65.6064 128.151L3.06178 65.6064Z"    stroke="black"    stroke-width="4.33002"  />
@@ -11,4 +11,4 @@
     );
   };
 
-  export default SvgBtnIcon
+  export default SvgBtnIconBlack
