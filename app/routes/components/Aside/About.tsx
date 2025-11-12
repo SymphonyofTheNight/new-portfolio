@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import SvgBtnIconBlack from "../_Svg/SvgBtnIconBlack";
 import SvgBtnIconWhite from "../_Svg/SvgBtnIconWhite";
 
+// import data
+import { services } from "~/admin/data";
+
 type OutletContextType = {
   routeToggle: { about: boolean };
 };
@@ -11,6 +14,8 @@ const About = () => {
   const { routeToggle } = useOutletContext<OutletContextType>();
   const [show, setShow] = useState<boolean>(false);
   const [hideBtn, setHideBtn] = useState<boolean>(false);
+  const [mobileServiceToggle, setMobileServiceToggle] = useState<number | null>(null);
+  const [checkMatchMedia, setCheckMatchMedia] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -23,6 +28,11 @@ const About = () => {
       return () => clearTimeout(timer);
     }
   }, [routeToggle.about]);
+
+  useState(() => {
+    const tabletViewport = window.matchMedia("(max-width: 1024px)");
+    if(tabletViewport.matches) return setCheckMatchMedia(!checkMatchMedia)
+  })
 
   return (
     <aside
@@ -64,32 +74,45 @@ const About = () => {
                 interfaces that leave a lasting impression.
               </h3>
             </div>
-            <div className="nav-list py-[1.8rem] px-[2rem] pb-[4.8rem] border-t border-t-[rgba(16,16,16,0.2)] flex items-start justify-between">
-              <h4 className="text-bg-counter pt-8 pb-[3.2rem]">(Links)</h4>
-              <div className="w-[40.5rem]">
-                {["Art Direction", "UI/UX Design", "Brand Identity", "Web Development"].map(
+            <div className="nav-list py-[1.8rem] px-[2rem] pb-[4.8rem] border-t border-t-[rgba(16,16,16,0.2)] flex items-start justify-between xs:flex-col lg:[flex-direction:unset]">
+              <h4 className="text-bg-counter xs:pt-[1rem] xs:pb-[0rem] lg:pt-8 lg:pb-[3.2rem]">(Links)</h4>
+              <div className="xs:w-full lg:w-[40.5rem]">
+                {services.map(
                   (item, i) => (
-                    <a key={i} className="pt-8 pb-[2.2rem] flex items-center justify-between border-b border-b-[rgba(150,150,150,0.2)] relative group">
-                      <div>
+                    <a key={i} className="pt-8 pb-[2.2rem] flex xs:flex-col lg:[flex-direction:unset] xs:items-start justify-between border-b border-b-[rgba(150,150,150,0.2)] relative cursor-pointer group"
+                    onClick={() => {
+                      setMobileServiceToggle(mobileServiceToggle === i ? null : i)
+                    }}
+                    >
+                      <div className="my-auto mr-auto ml-0">
                         <span className="text-bg-counter text-[1.1rem]">
                           ({String(i + 1).padStart(2, "0")})
                         </span>
                         <span className="text-white pl-5 text-[1.2rem]">
-                          {item}
+                          {item.title}
                         </span>
                       </div>
-                      <div className="w-[400px] leading-[100%] pr-[60px]">
-                        <span className="text-bg-counter text-[12px] transition-transform duration-400 hidden group-hover:block">
-                            Designing and building seamless digital experiences from front-end interfaces to back-end architecture. I transform ideas into scalable, high-performance web applications by combining clean code, efficient data flow, and modern frameworks. Every project is crafted for reliability, usability, and long-term growth.
+                      <div className={`w-[400px] leading-[100%] pr-[60px]
+                        ${mobileServiceToggle === i && checkMatchMedia ? "h-auto pt-[10px]" : null } 
+                        ${checkMatchMedia ? "h-[0px]" : null }
+                        `}>
+                        <span className={`text-bg-counter text-[12px] opacity-0 transform group-hover:opacity-100 group-hover:translate-y-0 translate-y-1 pointer-events-none
+                          ${mobileServiceToggle === i && checkMatchMedia ? "opacity-100 xs:h-[0px] lg:h-auto" : "opacity-0 xs:h-[0px] lg:h-auto"}
+                          ${checkMatchMedia ? null : "transition-all duration-400"} 
+                          `}>
+                          {item.description}
                         </span>
                       </div>
-                      <div className="about-services-list transform -translate-x-1/2 -translate-y-1/2 absolute right-[20px] top-[50%] transition-transform duration-200 group-hover:rotate-[90deg]">
+                      <div className="about-services-list transform -translate-x-1/2 -translate-y-1/2 absolute right-[20px] xs:top-[46px] lg:top-[50%] transition-transform duration-200 group-hover:rotate-[90deg] ">
                         <SvgBtnIconWhite />
                       </div>
                     </a>
                   )
                 )}
               </div>
+            </div>
+            <div className="mt-[40px] mb-[40px]">
+
             </div>
           </div>
         </div>
