@@ -96,7 +96,7 @@ const Main = () => {
             <p className="m-0 p-0">{projects[projectIndex].year}</p>
           </div>
       </div>
-      <HomeList projects={projects} setprojectIndex={setprojectIndex} />
+      <HomeList  projects={projects} setprojectIndex={setprojectIndex} />
 
       {/* side components */}
       <Outlet context={{ routeToggle, setRouteToggle }} />

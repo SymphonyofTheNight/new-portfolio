@@ -35,7 +35,7 @@ const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff, routeToggle ,set
 
   return (
         <div className={`absolute top-0 left-1/2 -translate-x-1/2 
-            ${iconTrigger ? 'h-full transition-all duration-500 delay-[1000ms]' : 'h-[0%] transition-all duration-500 delay-[1200ms]'}
+            ${iconTrigger ? 'dropdown-active h-full transition-all duration-500 delay-[1000ms]' : 'h-[0%] transition-all duration-500 delay-[1200ms]'}
                 w-[100vw] bg-transparent backdrop-blur-[1px]
                 flex flex-row items-start overflow-hidden`}
             >
