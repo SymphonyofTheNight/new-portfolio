@@ -41,11 +41,11 @@ const About = () => {
     <aside
       className={`absolute top-0 left-1/2 -translate-x-1/2 ${ show ? "dropdown-active h-full transition-all duration-500 delay-[500ms] flex flex-row items-start z-40" : "h-[0%] transition-all duration-500 delay-[0ms]" } w-[100vw] bg-transparent backdrop-blur-[1px] flex flex-row items-start overflow-hidden z-40`}>
       <div className={`${ show ? "flex" : "h-[0vh]" } flex-1 bg-red-200 relative transition-all duration-500`}></div>
-      <div className={`${ show ? "h-[100vh] transition-all duration-500 delay-[200ms]" : "h-[0vh] transition-all duration-500 delay-[0ms]" } flex justify-end max-w-[1100px] w-full right-0 relative`}>
+      <div className={`${ show ? "h-[100vh] transition-all duration-500 delay-[200ms]" : "h-[0vh] transition-all duration-500 delay-[0ms]" } flex justify-end max-w-[1200px] w-full right-0 relative`}>
         <div className="bg-black w-[100%] transition-all duration-500 relative">
           {/* exit */}
           <button
-            className={`absolute left-[15px] bottom-[15px] h-[45px] w-[45px] bg-white rounded-[2px] py-[15px] px-[15px] cursor-pointer transition-all duration-500 
+            className={`absolute z-20 left-[15px] bottom-[15px] h-[45px] w-[45px] bg-white rounded-[2px] py-[15px] px-[15px] cursor-pointer transition-all duration-500 
               ${show && !hideBtn ? "opacity-100 delay-[1500ms]" : "opacity-0 delay-[0ms]"} group`}
             onClick={() => {
               setHideBtn(true);
@@ -114,8 +114,20 @@ const About = () => {
                 )}
               </div>
             </div>
-            <div className="mt-[40px] mb-[40px] px-[2rem] w-full h-auto">
+            <div className="mt-[40px] mb-[40px] mx-auto w-[94%] h-auto relative">
               <img className="rounded-[8px]" src={about_mockup_one} />
+              <div className="animated-explore absolute h-auto w-full flex justify-between top-[20px] px-[20px]">
+                <a className="h-[50px] w-auto flex items-center justify-center">
+                  <span className="text-white text-3xl">Selected Project</span>
+                </a>
+                <a className="h-[50px] w-[150px] bg-white flex items-center justify-center rounded-[4px] cursor-pointer">
+                  <span className="text-black flex items-center gap-[10px]">Explore all 
+                    <div className="explore-icon">
+                      <SvgBtnIconBlack/>
+                    </div>
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
