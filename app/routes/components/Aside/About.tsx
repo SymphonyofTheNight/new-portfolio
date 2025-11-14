@@ -27,32 +27,21 @@ const About = () => {
       const timer = setTimeout(() => setShow(true), 2000); 
       return () => clearTimeout(timer);
     } else {
-      const timer = setTimeout(() => setShow(false), 1000);
+      const timer = setTimeout(() => setShow(false), 0);
       return () => clearTimeout(timer);
     }
   }, [routeToggle.about]);
 
   useState(() => {
     const tabletViewport = window.matchMedia("(max-width: 1024px)");
-    if (tabletViewport.matches) return setCheckMatchMedia(!checkMatchMedia);
-  });
+    if(tabletViewport.matches) return setCheckMatchMedia(!checkMatchMedia)
+  })
 
   return (
     <aside
-      className={`absolute top-0 left-1/2 -translate-x-1/2 ${
-        show
-          ? "dropdown-active h-full transition-all duration-500 delay-[500ms] flex flex-row items-start z-40"
-          : "h-[0%] transition-all duration-500 delay-[0ms]"
-      } w-[100vw] bg-transparent backdrop-blur-[1px] flex flex-row items-start z-40 overflow-y-auto`}  // FIX: replaced overflow-hidden with overflow-y-auto
-    >
-      <div className={`${show ? "flex" : "h-[0vh]"} flex-1 bg-red-200 relative transition-all duration-500`}></div>
-      <div
-        className={`${
-          show
-            ? "h-auto transition-all duration-500 delay-[200ms]"
-            : "h-[0vh] transition-all duration-500 delay-[0ms]"
-        } flex justify-end max-w-[1100px] w-full right-0 relative`}
-      >
+      className={`absolute top-0 left-1/2 -translate-x-1/2 ${ show ? "dropdown-active h-full transition-all duration-500 delay-[500ms] flex flex-row items-start z-40" : "h-[0%] transition-all duration-500 delay-[0ms]" } w-[100vw] bg-transparent backdrop-blur-[1px] flex flex-row items-start overflow-hidden z-40`}>
+      <div className={`${ show ? "flex" : "h-[0vh]" } flex-1 bg-red-200 relative transition-all duration-500`}></div>
+      <div className={`${ show ? "h-[100vh] transition-all duration-500 delay-[200ms]" : "h-[0vh] transition-all duration-500 delay-[0ms]" } flex justify-end max-w-[1100px] w-full right-0 relative`}>
         <div className="bg-black w-[100%] transition-all duration-500 relative">
           {/* exit */}
           <button
@@ -62,11 +51,11 @@ const About = () => {
               setHideBtn(true);
               setTimeout(() => {
                 setShow(false);
-                setHideBtn(false);
+                setHideBtn(false); 
                 setTimeout(() => {
-                  navigate("/");
-                }, 1000);
-              }, 600);
+                  navigate("/")
+                }, 1000)
+              }, 600); 
             }}
           >
             <div className="transition-transform duration-200 group-hover:rotate-[90deg]">
@@ -74,7 +63,7 @@ const About = () => {
             </div>
           </button>
           {/* contents */}
-          <div className="about-tp flex flex-col justify-start items-stretch overflow-y-auto max-h-[100vh]"> {/* FIX: added scroll here */}
+          <div className="about-tp flex flex-col justify-start items-stretch overflow-y-auto max-h-[100vh]">
             <div className="py-[1rem] border-b border-b-[rgba(150,150,150,0.2)] pb-12 pt-4 px-[2rem]">
               <h3 className="text-bg-counter text-3xl h-auto">
                 <span className="text-bg-counter text-[22px] pt-3 pr-[100px]">
@@ -91,50 +80,42 @@ const About = () => {
             <div className="nav-list py-[1.8rem] px-[2rem] pb-[4.8rem] border-t border-t-[rgba(16,16,16,0.2)] flex items-start justify-between xs:flex-col lg:[flex-direction:unset]">
               <h4 className="text-bg-counter xs:pt-[1rem] xs:pb-[0rem] lg:pt-8 lg:pb-[3.2rem]">(Links)</h4>
               <div className="xs:w-full lg:w-[40.5rem]">
-                {services.map((item, i) => (
-                  <a
-                    key={i}
-                    className="pt-8 pb-[2.2rem] flex xs:flex-col lg:[flex-direction:unset] xs:items-start justify-between border-b border-b-[rgba(150,150,150,0.2)] relative cursor-pointer group"
+                {services.map(
+                  (item, i) => (
+                    <a key={i} className="pt-8 pb-[2.2rem] flex xs:flex-col lg:[flex-direction:unset] xs:items-start justify-between border-b border-b-[rgba(150,150,150,0.2)] relative cursor-pointer group"
                     onClick={() => {
-                      setMobileServiceToggle(mobileServiceToggle === i ? null : i);
+                      setMobileServiceToggle(mobileServiceToggle === i ? null : i)
                     }}
-                  >
-                    <div className="my-auto mr-auto ml-0">
-                      <span className="text-bg-counter text-[1.1rem]">
-                        ({String(i + 1).padStart(2, "0")})
-                      </span>
-                      <span className="text-white pl-5 text-[1.2rem]">
-                        {item.title}
-                      </span>
-                    </div>
-                    <div
-                      className={`w-[400px] leading-[100%] pr-[60px]
-                        ${mobileServiceToggle === i && checkMatchMedia ? "h-auto pt-[10px]" : null} 
-                        ${checkMatchMedia ? "h-[0px]" : null}
-                        `}
                     >
-                      <span
-                        className={`text-bg-counter text-[12px] opacity-0 transform group-hover:opacity-100 group-hover:translate-y-0 translate-y-1 pointer-events-none
-                          ${
-                            mobileServiceToggle === i && checkMatchMedia
-                              ? "opacity-100 xs:h-[0px] lg:h-auto"
-                              : "opacity-0 xs:h-[0px] lg:h-auto"
-                          }
+                      <div className="my-auto mr-auto ml-0">
+                        <span className="text-bg-counter text-[1.1rem]">
+                          ({String(i + 1).padStart(2, "0")})
+                        </span>
+                        <span className="text-white pl-5 text-[1.2rem]">
+                          {item.title}
+                        </span>
+                      </div>
+                      <div className={`w-[400px] leading-[100%] pr-[60px]
+                        ${mobileServiceToggle === i && checkMatchMedia ? "h-auto pt-[10px]" : null } 
+                        ${checkMatchMedia ? "h-[0px]" : null }
+                        `}>
+                        <span className={`text-bg-counter text-[12px] opacity-0 transform group-hover:opacity-100 group-hover:translate-y-0 translate-y-1 pointer-events-none
+                          ${mobileServiceToggle === i && checkMatchMedia ? "opacity-100 xs:h-[0px] lg:h-auto" : "opacity-0 xs:h-[0px] lg:h-auto"}
                           ${checkMatchMedia ? null : "transition-all duration-400"} 
-                          `}
-                      >
-                        {item.description}
-                      </span>
-                    </div>
-                    <div className="about-services-list transform -translate-x-1/2 -translate-y-1/2 absolute right-[20px] xs:top-[46px] lg:top-[50%] transition-transform duration-200 group-hover:rotate-[90deg] ">
-                      <SvgBtnIconWhite />
-                    </div>
-                  </a>
-                ))}
+                          `}>
+                          {item.description}
+                        </span>
+                      </div>
+                      <div className="about-services-list transform -translate-x-1/2 -translate-y-1/2 absolute right-[20px] xs:top-[46px] lg:top-[50%] transition-transform duration-200 group-hover:rotate-[90deg] ">
+                        <SvgBtnIconWhite />
+                      </div>
+                    </a>
+                  )
+                )}
               </div>
             </div>
             <div className="mt-[40px] mb-[40px] px-[2rem] w-full h-auto">
-              <img className="rounded-[4px]" src={about_mockup_one} />
+              <img className="rounded-[8px]" src={about_mockup_one} />
             </div>
           </div>
         </div>
