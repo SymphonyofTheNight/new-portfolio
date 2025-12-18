@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router";
+import { cn } from "utils/utils";
 
 // data
 import { projects } from "../../admin/data";
@@ -72,10 +73,13 @@ const Main = () => {
       <img
         src={currentSrc}
         alt={`Project ${projectIndex}`}
-        className={`absolute inset-0 w-full h-full object-cover brightness-50 
-          transition-all duration-700 ease-in-out
-          ${animate ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-105"}
-        `}
+        className={cn(
+          'absolute inset-0 w-full h-full object-cover brightness-50 transition-all duration-700 ease-in-out',
+          {
+            'opacity-100 blur-0 scale-100': animate,
+            'opacity-0 blur-md scale-105': !animate,
+          }
+        )}
       />
       <Navigation routeToggle={routeToggle} setRouteToggle={setRouteToggle}/>
       <div className="project-title-section xs:flex-col md:[flex-direction:unset]">

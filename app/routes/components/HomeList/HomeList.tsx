@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import type { Project } from '../../../admin/types/Project'
+import { cn } from 'utils/utils'
 
 const HomeList = ({
   projects,
@@ -76,9 +77,7 @@ const HomeList = ({
     <div className='home-list-cards flex absolute bottom-[2%] right-[2%] gap-[14px]'>
       {projects?.map((project: Project, index) => (
         <button
-          className={`project-card-select ${
-            index === currentIndex ? 'is-selected' : ''
-          }`}
+          className={cn('project-card-select', { "is-selected": index === currentIndex })}
           key={project.id}
           onClick={() => {
             setCurrentIndex(index)

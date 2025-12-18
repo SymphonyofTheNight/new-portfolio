@@ -3,6 +3,7 @@ import type { Services } from "./types/Services"
 
 // img 
 import musicbass from '../../assets/imgs/musicbass.webp'
+import cosmic from '../../assets/imgs/cosmic.jpg'
 import aesthetic_capture from '../../assets/imgs/aesthetic_capture.webp'
 
 export const projects: Project[] = [
@@ -10,6 +11,7 @@ export const projects: Project[] = [
         "id": 1,
         "title": "Tropical",
         "description": "Where every frame feels alive.",
+        "full_description": "",
         "image": aesthetic_capture,
         "technologies": ["React", "Tailwind CSS", "TypeScript"],
         "githubUrl": "",
@@ -20,9 +22,10 @@ export const projects: Project[] = [
     },
     {
         "id": 2,
-        "title": "Entropy",
+        "title": "Reverse",
         "description": "Every note. Every pulse. Every vibe.",
-        "image": musicbass,
+        "full_description": "",
+        "image": cosmic,
         "technologies": ["React", "Tailwind CSS", "TypeScript"],
         "githubUrl": "",
         "liveDemoUrl": "",
