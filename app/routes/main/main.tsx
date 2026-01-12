@@ -53,17 +53,28 @@ const Main = () => {
     };
   }, [projectIndex]);
 
-  // 🔹 NEW: sync toggle with route path
   useEffect(() => {
-    const isAbout = location.pathname === "/about";
+    const pathname = location.pathname;
 
-    // Optional delay for smooth closing animation
-    const timer = setTimeout(() => {
-      setRouteToggle((prev) => ({
-        ...prev,
-        about: isAbout,
-      }));
-    }, isAbout ? 0 : 300);
+    const nextState = {
+      about: pathname === "/about",
+      archives: pathname === "/archives",
+      contact: pathname === "/contact",
+    };
+
+    // Delay only when closing
+    const shouldDelay =
+      !nextState.about && !nextState.archives;
+
+    const timer = setTimeout(
+      () => {
+        setRouteToggle((prev) => ({
+          ...prev,
+          ...nextState,
+        }));
+      },
+      shouldDelay ? 300 : 0
+    );
 
     return () => clearTimeout(timer);
   }, [location.pathname]);

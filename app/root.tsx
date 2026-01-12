@@ -10,6 +10,9 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 
+// animated cursor
+import AnimatedCursor from "./routes/components/AnimatedCursor/AnimatedCursor";
+
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
@@ -33,6 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <AnimatedCursor />
         {children}
         <ScrollRestoration />
         <Scripts />

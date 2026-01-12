@@ -28,6 +28,33 @@
   --breakpoint-xl: 1366px;
 }
 
+/* animated cursor */
+
+/* Hide system cursor only when custom cursor is enabled */
+.custom-cursor-enabled *,
+.custom-cursor-enabled *::before,
+.custom-cursor-enabled *::after {
+  cursor: none !important;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2147483647;
+
+  background-color: white;
+  mix-blend-mode: difference;
+
+  transform-origin: center;
+  transition: transform 0.15s ease;
+}
+
+
 html,
 body {
   @apply bg-white dark:bg-gray-950;

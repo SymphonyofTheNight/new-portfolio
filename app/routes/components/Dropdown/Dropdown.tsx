@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router";
 
 interface DropdownProps {
     iconTrigger: boolean
@@ -12,10 +12,11 @@ interface DropdownProps {
 const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff, routeToggle ,setRouteToggle }: DropdownProps ) => {
 
   const navigate = useNavigate();
+  const path = useLocation();
 
   const [Hovered, SetHovered] = useState<number | null>(null);
   const [menuToggle, setMenuToggle] = useState({
-    project: true,
+    project: false,
     about: false,
     archives: false,
     contact: false,
@@ -30,6 +31,18 @@ const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff, routeToggle ,set
       return { ...allFalse, [key]: !menu[key] };
     });
   };
+
+  useEffect(()=> {
+    const pathname = path.pathname;
+
+    setMenuToggle((prev) => ({
+      ...prev,
+      project: pathname === '/' ? true : false,
+      about: pathname === '/about' ? true : false,
+      archives: pathname === '/archives' ? true : false,
+      contact: pathname === '/contact' ? true : false,
+    }))
+  },[path])
 
   const [links] = useState<Array<string>>(["Instagram", "Discord", "LinkedIn"])
 
@@ -87,7 +100,12 @@ const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff, routeToggle ,set
                         <a className='pt-9 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)] cursor-pointer group'>
                           <span className='text-bg-counter text-[1.3rem]'>(03)</span>
                           <span className={`text-loader-bg text-[1.5rem] transition-all duration-200 ${menuToggle.archives ? 'pl-5' : 'pl-15'} `}
-                          onClick={() => toggleFunc("archives")}
+                          onClick={() => {
+                            toggleFunc("archives")
+                            setIconTrigger(!iconTrigger)
+                            navigate("/archives")
+                            setRouteToggle({...routeToggle, archives: !routeToggle.archives })
+                          }}
                           >Archives</span>
                         </a>
                         <a className='pt-9 pb-[2.2rem] flex items-center justify-start border-b border-b-[rgba(16,16,16,0.2)] cursor-pointer group'>
@@ -114,7 +132,7 @@ const Dropdown = ({ iconTrigger, setIconTrigger, setPointerOff, routeToggle ,set
                       </div>
                       <p className='text-bg-counter pb-4 xs:absolute tb:[position:unset] xs:right-[42px] xs:bottom-[10px] tb:[right:unset]'>©2025</p>
                     </div>
-                  </div>
+                  </div>show 
                 </div>
               </div>
         </div>
